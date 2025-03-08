@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class WaypointPatrol : MonoBehaviour
 {
@@ -13,11 +14,17 @@ public class WaypointPatrol : MonoBehaviour
     [HideInInspector]
     public Transform player;
 
+    [Header("Control Material Color")]
+    [SerializeField] Material m_Material;
+    [SerializeField] Color m_DefaultColor;
+    [SerializeField] Color m_FollowingColor;
+
     [Header("Debug")]
     public bool ShowDebug;
 
     void Start()
     {
+        m_Material = GetComponentInChildren<Renderer>().material;
         navMeshAgent.SetDestination(waypoints[0].position);
     }
 
@@ -27,10 +34,12 @@ public class WaypointPatrol : MonoBehaviour
         if (playerDetected)
         {
             OnPlayerSpotted();
+            SetMaterialColor(m_FollowingColor);
         }
         else
         {
             Patrol();
+            SetMaterialColor(m_DefaultColor);
         }
     }
 
@@ -58,5 +67,10 @@ public class WaypointPatrol : MonoBehaviour
         {
             playerCaught = true;
         }
+    }
+
+    void SetMaterialColor(Color c)
+    {
+        m_Material.SetColor("_Color", c);
     }
 }

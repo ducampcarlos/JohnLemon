@@ -214,6 +214,10 @@ MonoBehaviour:
   playerDetected: 0
   playerCaught: 0
   player: {fileID: 0}
+  m_Material: {fileID: 0}
+  m_DefaultColor: {r: 0.42352942, g: 0.42352942, b: 0.42352942, a: 0.0627451}
+  m_FollowingColor: {r: 1, g: 0, b: 0, a: 0.0627451}
+  ShowDebug: 0
 --- !u!82 &6192667046171775743
 AudioSource:
   m_ObjectHideFlags: 0
